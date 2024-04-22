@@ -13,7 +13,7 @@ public:
 
 	virtual void Update(const GameTime *pGameTime);
 
-	virtual void Draw(SpriteBatch *pSpriteBatch) = 0; // Pure Virtual
+	virtual void Draw(SpriteBatch *pSpriteBatch) = 0; // Pure Virtual 
 
 	virtual void Hit(const float damage);
 
@@ -23,7 +23,7 @@ public:
 
 	virtual std::string ToString() const { return "Ship"; }
 
-	virtual CollisionType GetCollisionType() const = 0; // Pure Virtual
+	virtual CollisionType GetCollisionType() const = 0; // Pure Virtual 
 
 	virtual void AttachWeapon(Weapon *pWeapon, Vector2 position);
 

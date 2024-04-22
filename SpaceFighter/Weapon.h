@@ -20,9 +20,9 @@ public:
 
 	virtual ~Weapon() { }
 
-	virtual void Update(const GameTime *pGameTime) { }; // Pure Virtual
+	virtual void Update(const GameTime *pGameTime) { };
 
-	virtual void Draw(SpriteBatch *pSpriteBatch) { }; // Pure Virtual
+	virtual void Draw(SpriteBatch *pSpriteBatch) { };
 
 	virtual void Fire(TriggerType triggerType) = 0; // Pure Virtual
 
@@ -34,9 +34,9 @@ public:
 
 	virtual void SetProjectilePool(std::vector<Projectile *> *pProjectiles) { m_pProjectiles = pProjectiles; }
 
-	virtual void Activate() { m_isActive = true; } // Pure Virtual
+	virtual void Activate() { m_isActive = true; }
 
-	virtual void Dectivate() { m_isActive = false; } // Pure Virtual
+	virtual void Dectivate() { m_isActive = false; }
 
 	virtual bool IsActive() const { return m_isActive && m_pGameObject->IsActive(); }
 

@@ -13,7 +13,7 @@ public:
 
 	virtual void Update(const GameTime *pGameTime);
 
-	virtual void Draw(SpriteBatch *pSpriteBatch) = 0; // Pure Virtual
+	virtual void Draw(SpriteBatch *pSpriteBatch) = 0; // Pure Virtual 
 
 	virtual void Initialize(const Vector2 position, const double delaySeconds);
 

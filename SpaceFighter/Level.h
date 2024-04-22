@@ -19,7 +19,7 @@ public:
 
 	virtual void LoadContent(ResourceManager* pResourceManager);
 
-	virtual void UnloadContent() = 0;
+	virtual void UnloadContent() = 0; // Pure Virtual
 
 	virtual void HandleInput(const InputState* pInput);
 
