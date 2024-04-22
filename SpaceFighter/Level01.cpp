@@ -29,7 +29,7 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 		3.5, 0.3, 0.3, 0.3, 0.3
 	};
 
-	float delay = 3.0; // start delay
+	float delay = 1.0; // start delay
 	Vector2 position;
 
 	for (int i = 0; i < COUNT; i++)

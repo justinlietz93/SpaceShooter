@@ -1,46 +1,63 @@
-
 #include "EnemyShip.h"
-
 
 EnemyShip::EnemyShip()
 {
-	SetMaxHitPoints(1);
-	SetCollisionRadius(20);
+    // Initialize enemy ship with default parameters
+     // Set maximum hit points to 1
+    SetMaxHitPoints(1);
+    // Set collision radius to 20
+    SetCollisionRadius(20);
 }
 
-
-void EnemyShip::Update(const GameTime *pGameTime)
+// Update method for EnemyShip
+void EnemyShip::Update(const GameTime* pGameTime)
 {
-	if (m_delaySeconds > 0)
-	{
-		m_delaySeconds -= pGameTime->GetTimeElapsed();
+    // If there's a delay before activation, count down
+    if (m_delaySeconds > 0)
+    {
+        // Decrement delay time
+        m_delaySeconds -= pGameTime->GetTimeElapsed();
 
-		if (m_delaySeconds <= 0)
-		{
-			GameObject::Activate();
-		}
-	}
+        // If delay time has elapsed, activate the enemy ship
+        if (m_delaySeconds <= 0)
+        {
+            // Activate the enemy ship
+            GameObject::Activate();
+        }
+    }
 
-	if (IsActive())
-	{
-		m_activationSeconds += pGameTime->GetTimeElapsed();
-		if (m_activationSeconds > 2 && !IsOnScreen()) Deactivate();
-	}
+    // If the enemy ship is active
+    if (IsActive())
+    {
+        // Increment activation time
+        m_activationSeconds += pGameTime->GetTimeElapsed();
 
-	Ship::Update(pGameTime);
+        // If activation time exceeds 2 seconds and the ship is not on screen, deactivate it
+        if (m_activationSeconds > 2 && !IsOnScreen())
+        {
+            // Deactivate the enemy ship
+            Deactivate();
+        }
+    }
+    // Call the base class's update method
+    Ship::Update(pGameTime);
 }
 
-
+// Initialize method for EnemyShip
 void EnemyShip::Initialize(const Vector2 position, const double delaySeconds)
 {
-	SetPosition(position);
-	m_delaySeconds = delaySeconds;
-
-	Ship::Initialize();
+    // Set the position of the enemy ship
+    SetPosition(position); 
+    // Set the delay before activation
+    m_delaySeconds = delaySeconds; 
+    
+    // Call the base class's initialize method
+    Ship::Initialize();
 }
 
-
+// Method to handle when the enemy ship is hit
 void EnemyShip::Hit(const float damage)
 {
-	Ship::Hit(damage);
+    // Call the base class's hit method
+    Ship::Hit(damage); 
 }

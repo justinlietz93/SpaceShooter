@@ -11,7 +11,7 @@ public:
 	Blaster(const bool isActive) : Weapon(isActive)
 	{
 		m_cooldown = 0;
-		m_cooldownSeconds = 0.35;
+		m_cooldownSeconds = 0.1;
 	}
 
 	virtual ~Blaster() { }

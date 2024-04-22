@@ -1,60 +1,80 @@
-
 #include "Ship.h"
 
-
+// Constructor for Ship class
 Ship::Ship()
 {
-	SetPosition(0, 0);
-	SetCollisionRadius(10);
+    // Set default position to (0, 0)
+    SetPosition(0, 0);
+    // Set default collision radius to 10
+    SetCollisionRadius(10);
 
-	m_speed = 300;
-	m_maxHitPoints = 3;
-	m_isInvulnurable = false;
+    // Set default speed to 300
+    m_speed = 300;
+    // Set default maximum hit points to 3
+    m_maxHitPoints = 3;
+    // Set invulnerability status to false
+    m_isInvulnurable = false;
 
-	Initialize();
+    // Call initialization method
+    Initialize();
 }
 
-void Ship::Update(const GameTime *pGameTime)
+// Update method for Ship class
+void Ship::Update(const GameTime* pGameTime)
 {
-	m_weaponIt = m_weapons.begin();
-	for (; m_weaponIt != m_weapons.end(); m_weaponIt++)
-	{
-		(*m_weaponIt)->Update(pGameTime);
-	}
+    // Iterate through each weapon and update it
+    m_weaponIt = m_weapons.begin();
+    for (; m_weaponIt != m_weapons.end(); m_weaponIt++)
+    {
+        (*m_weaponIt)->Update(pGameTime);
+    }
 
-	GameObject::Update(pGameTime);
+    // Call base class's update method
+    GameObject::Update(pGameTime);
 }
 
+// Method to handle when the ship is hit
 void Ship::Hit(const float damage)
 {
-	if (!m_isInvulnurable)
-	{
-		m_hitPoints -= damage;
+    // If ship is not invulnerable
+    if (!m_isInvulnurable)
+    {
+        // Decrease hit points by the damage
+        m_hitPoints -= damage;
 
-		if (m_hitPoints <= 0)
-		{
-			GameObject::Deactivate();
-		}
-	}
+        // If hit points fall below or equal to 0, deactivate the ship
+        if (m_hitPoints <= 0)
+        {
+            GameObject::Deactivate();
+        }
+    }
 }
 
+// Initialize method for Ship class
 void Ship::Initialize()
 {
-	m_hitPoints = m_maxHitPoints;
+    // Set hit points to maximum hit points
+    m_hitPoints = m_maxHitPoints;
 }
 
+// Method to fire weapons
 void Ship::FireWeapons(TriggerType type)
 {
-	m_weaponIt = m_weapons.begin();
-	for (; m_weaponIt != m_weapons.end(); m_weaponIt++)
-	{
-		(*m_weaponIt)->Fire(type);
-	}
+    // Iterate through each weapon and fire it
+    m_weaponIt = m_weapons.begin();
+    for (; m_weaponIt != m_weapons.end(); m_weaponIt++)
+    {
+        (*m_weaponIt)->Fire(type);
+    }
 }
 
-void Ship::AttachWeapon(Weapon *pWeapon, Vector2 position)
+// Method to attach a weapon to the ship
+void Ship::AttachWeapon(Weapon* pWeapon, Vector2 position)
 {
-	pWeapon->SetGameObject(this);
-	pWeapon->SetOffset(position);
-	m_weapons.push_back(pWeapon);
+    // Set the attached weapon's game object to this ship
+    pWeapon->SetGameObject(this);
+    // Set the offset position of the weapon
+    pWeapon->SetOffset(position);
+    // Add the weapon to the ship's list of weapons
+    m_weapons.push_back(pWeapon);
 }

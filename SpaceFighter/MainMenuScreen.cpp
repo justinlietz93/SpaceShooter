@@ -30,7 +30,7 @@ MainMenuScreen::MainMenuScreen()
 
 	SetRemoveCallback(OnScreenRemove);
 
-	SetTransitionInTime(1.0f);
+	SetTransitionInTime(2.0f);
 	SetTransitionOutTime(0.5f);
 
 	Show(); // Show the screen
@@ -46,7 +46,7 @@ void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
 	const int COUNT = 2;
 	MenuItem *pItem;
 	Font::SetLoadSize(20, true);
-	Font *pFont = pResourceManager->Load<Font>("Fonts\\arial.ttf");
+	Font *pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
 
 	SetDisplayCount(COUNT);
 
@@ -77,8 +77,8 @@ void MainMenuScreen::Update(const GameTime *pGameTime)
 		pItem = GetMenuItem(i);
 		pItem->SetAlpha(GetAlpha());
 
-		if (pItem->IsSelected()) pItem->SetColor(Color::White);
-		else pItem->SetColor(Color::Blue);
+		if (pItem->IsSelected()) pItem->SetColor(Color::Yellow);
+		else pItem->SetColor(Color::Gray);
 	}
 
 	MenuScreen::Update(pGameTime);
