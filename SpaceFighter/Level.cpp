@@ -212,14 +212,7 @@ void Level::Draw(SpriteBatch *pSpriteBatch)
 		pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition, Color::White);
 
 		// Draws background image again to simulate scrolling
-		if (backgroundPosition.Y > 0)
-		{
-			pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition - Vector2::UNIT_Y * backgroundHeight, Color::White);
-		}
-		else
-		{
-			pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition + Vector2::UNIT_Y * backgroundHeight, Color::White);
-		}
+		pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition - Vector2::UNIT_Y * backgroundHeight, Color::White);
 	}
 
 	m_gameObjectIt = m_gameObjects.begin();
