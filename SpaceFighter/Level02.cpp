@@ -46,4 +46,3 @@ void Level02::LoadContent(ResourceManager* pResourceManager)
 
 	Level::LoadContent(pResourceManager);
 }
-

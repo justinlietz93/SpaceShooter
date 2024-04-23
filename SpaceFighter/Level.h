@@ -79,11 +79,19 @@ protected:
 
 private:
 
+	// Stuff for background image scrolling effect
+	float m_verticalMovement = 0.0f;
+	// Adjust according to frame rate
+	const float FRAME_RATE = 60.0f;
+	const float TIME_STEP = 1.0f / FRAME_RATE;
+
 	CollisionManager* m_pCollisionManager = nullptr;
 
 	GameplayScreen* m_pGameplayScreen = nullptr;
 
 	AudioSample* m_pAudio = nullptr;
+
+	AudioSample* m_pBackgroundMusic = nullptr;
 
 	std::vector<GameObject*>* m_pSectors;
 
@@ -98,6 +106,7 @@ private:
 	PlayerShip* m_pPlayerShip;
 	std::vector<Projectile*> m_projectiles;
 
+	Texture* m_backgroundTexture = nullptr;
 
 	void CheckCollisions(std::vector<GameObject*>& sector);
 

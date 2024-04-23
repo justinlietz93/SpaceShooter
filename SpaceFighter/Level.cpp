@@ -84,6 +84,10 @@ Level::~Level()
 void Level::LoadContent(ResourceManager *pResourceManager)
 {
 	m_pPlayerShip->LoadContent(pResourceManager);
+	m_backgroundTexture = pResourceManager->Load<Texture>("Textures\\game_map.png");
+	m_pBackgroundMusic = pResourceManager->Load<AudioSample>("Audio\\Music\\SpaceJungle.wav");
+	m_pBackgroundMusic->SetVolume(0.2f);
+	m_pBackgroundMusic->Play();
 }
 
 
@@ -113,6 +117,17 @@ void Level::Update(const GameTime *pGameTime)
 		{
 			CheckCollisions(m_pSectors[i]);
 		}
+	}
+
+	// Increment vertical movement based on a fixed time step
+	float scrollSpeed = 80.0f;
+	m_verticalMovement += scrollSpeed * TIME_STEP;
+
+	// Reset vertical movement when it exceeds the height of the background image
+	int backgroundImageHeight = m_backgroundTexture->GetHeight();
+	if (m_verticalMovement >= backgroundImageHeight)
+	{
+		m_verticalMovement -= backgroundImageHeight;
 	}
 }
 
@@ -180,6 +195,32 @@ void Level::CheckCollisions(std::vector<GameObject *> &gameObjects)
 void Level::Draw(SpriteBatch *pSpriteBatch)
 {
 	pSpriteBatch->Begin();
+
+
+	// Draw background image
+	if (m_backgroundTexture)
+	{
+		// Calculate the vertical movement based on the screen height and background height
+		float screenHeight = (float)Game::GetScreenHeight();
+		float backgroundHeight = (float)m_backgroundTexture->GetHeight();
+		float verticalOffset = fmod(m_verticalMovement, backgroundHeight);
+
+		// Calculate the position of the background image centered on the screen
+		Vector2 backgroundPosition = Vector2::UNIT_Y * (screenHeight / 2.0f - backgroundHeight / 2.0f + verticalOffset);
+
+		// Draw the background image at its calculated position
+		pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition, Color::White);
+
+		// Draws background image again to simulate scrolling
+		if (backgroundPosition.Y > 0)
+		{
+			pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition - Vector2::UNIT_Y * backgroundHeight, Color::White);
+		}
+		else
+		{
+			pSpriteBatch->Draw(m_backgroundTexture, backgroundPosition + Vector2::UNIT_Y * backgroundHeight, Color::White);
+		}
+	}
 
 	m_gameObjectIt = m_gameObjects.begin();
 	for (; m_gameObjectIt != m_gameObjects.end(); m_gameObjectIt++)
