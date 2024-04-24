@@ -2,12 +2,14 @@
 
 #include "Level01.h"
 #include "BioEnemyShip.h"
+#include "BioEnemyBoss.h"
 
 
 void Level01::LoadContent(ResourceManager *pResourceManager)
 {
 	// Setup enemy ships
 	Texture *pTexture = pResourceManager->Load<Texture>("Textures\\BioEnemyShip.png");
+	Texture *pBossTexture = pResourceManager->Load<Texture>("Textures\\BioEnemyBoss.png");
 
 	const int COUNT = 21;
 
@@ -19,6 +21,8 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 		0.7, 0.75, 0.65, 0.8, 0.6,
 		0.5, 0.4, 0.6, 0.45, 0.55
 	};
+
+	double xBossPosition = .6;
 	
 	double delays[COUNT] =
 	{
@@ -31,11 +35,13 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 
 	float delay = 1.0; // start delay
 	Vector2 position;
+	Vector2 bossPosition;
 
 	for (int i = 0; i < COUNT; i++)
 	{
 		delay += delays[i];
 		position.Set(xPositions[i] * Game::GetScreenWidth(), -pTexture->GetCenter().Y);
+		
 
 		BioEnemyShip *pEnemy = new BioEnemyShip();
 		pEnemy->SetTexture(pTexture);
@@ -43,6 +49,7 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 		pEnemy->Initialize(position, (float)delay);
 		AddGameObject(pEnemy);
 	}
+
 
 	Level::LoadContent(pResourceManager);
 }
