@@ -84,7 +84,7 @@ Level::~Level()
 void Level::LoadContent(ResourceManager *pResourceManager)
 {
 	m_pPlayerShip->LoadContent(pResourceManager);
-	m_backgroundTexture = pResourceManager->Load<Texture>("Textures\\game_map.png");
+	m_backgroundTexture = pResourceManager->Load<Texture>("Textures\\game_map.jpg");
 	m_pBackgroundMusic = pResourceManager->Load<AudioSample>("Audio\\Music\\SpaceJungle.wav");
 	m_pBackgroundMusic->SetVolume(0.2f);
 	m_pBackgroundMusic->Play();
