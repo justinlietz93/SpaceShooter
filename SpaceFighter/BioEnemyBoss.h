@@ -17,8 +17,13 @@ public:
 
 	virtual void Draw(SpriteBatch* pSpriteBatch);
 
+	virtual float SwapDirection(float x);
+
 
 private:
+
+	float m_horizontalDirection = 2;
+	float m_verticalDirection = 0;
 
 	Texture* m_pTexture = nullptr;
 

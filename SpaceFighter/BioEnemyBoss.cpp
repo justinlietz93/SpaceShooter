@@ -3,11 +3,11 @@
 // Constructor for BioEnemyShip class
 BioEnemyBoss::BioEnemyBoss()
 {
-    // Set speed to 150
-    SetSpeed(75);
-    // Set maximum hit points to 1
-    SetMaxHitPoints(30);
-    // Set collision radius to 20
+    // Set speed to 1.2
+    SetSpeed(1.2);
+    // Set maximum hit points to 120
+    SetMaxHitPoints(120);
+    // Set collision radius to 50
     SetCollisionRadius(50);
 }
 
@@ -17,11 +17,32 @@ void BioEnemyBoss::Update(const GameTime* pGameTime)
     // If the ship is active
     if (IsActive())
     {
-        // Calculate horizontal movement based on sine wave
-        float x = sin(pGameTime->GetTotalTime() * Math::PI + GetIndex());
-        x *= GetSpeed() * pGameTime->GetTimeElapsed() * 1.4f;
-        // Translate position horizontally
-        TranslatePosition(x, GetSpeed() * pGameTime->GetTimeElapsed());
+        const int PADDING = 80; // Padding to fit the boss of the screen
+        const int LEFT = PADDING;
+        const int RIGHT = Game::GetScreenWidth() - PADDING;
+        const double MAX_HORIZ_SPEED = 3; // Constant for the max horizontal speed
+        const double MAX_VERT_SPEED = 0.6;// Constant for the max vertical speed
+
+        Vector2* pPosition = &GetPosition(); // Gets the position of the middle of the ship
+        if (pPosition->X - GetHalfDimensions().X < LEFT) // Ensures the boss doesn't go past the left edge of the screen
+        {
+            // Takes the current horizontal speed, swaps the sign (+ or -), and multiplies it by the speed of the ship
+            m_horizontalDirection = GetSpeed() * SwapDirection(m_horizontalDirection);
+            // Increases the vertical speed by 0.3
+            m_verticalDirection += 0.3;
+        }
+        if (pPosition->X + GetHalfDimensions().X > RIGHT) // Ensures the boss doesn't go past the right edge of the screen
+        {
+            m_horizontalDirection = GetSpeed() * SwapDirection(m_horizontalDirection);
+            m_verticalDirection += 0.3;
+        }
+
+        // Prevents boss from going too fast for the player by setting the speed to the max allowed
+        if (m_horizontalDirection > MAX_HORIZ_SPEED) { m_horizontalDirection = MAX_HORIZ_SPEED; }
+        if (m_verticalDirection > MAX_VERT_SPEED) { m_verticalDirection = MAX_VERT_SPEED; }
+
+        // Translates the position
+        TranslatePosition(m_horizontalDirection, m_verticalDirection);
 
         // If the ship is not on screen, deactivate it
         if (!IsOnScreen())
@@ -44,3 +65,10 @@ void BioEnemyBoss::Draw(SpriteBatch* pSpriteBatch)
         pSpriteBatch->Draw(m_pTexture, GetPosition(), Color::White, m_pTexture->GetCenter(), Vector2::ONE, Math::PI, 1);
     }
 }
+
+float BioEnemyBoss::SwapDirection(float x)
+{
+    // Swaps the negative/positive number
+    return x *= -1;
+}
+
