@@ -4,11 +4,11 @@
 BioEnemyBoss::BioEnemyBoss()
 {
     // Set speed to 1.2
-    SetSpeed(1.2);
-    // Set maximum hit points to 120
-    SetMaxHitPoints(120);
+    SetSpeed(1.3);
+    // Set maximum hit points to 150
+    SetMaxHitPoints(130);
     // Set collision radius to 50
-    SetCollisionRadius(50);
+    SetCollisionRadius(80);
 }
 
 // Update method for BioEnemyShip class
@@ -17,11 +17,11 @@ void BioEnemyBoss::Update(const GameTime* pGameTime)
     // If the ship is active
     if (IsActive())
     {
-        const int PADDING = 80; // Padding to fit the boss of the screen
+        const int PADDING = 70; // Padding to fit the boss of the screen
         const int LEFT = PADDING;
         const int RIGHT = Game::GetScreenWidth() - PADDING;
-        const double MAX_HORIZ_SPEED = 3; // Constant for the max horizontal speed
-        const double MAX_VERT_SPEED = 0.6;// Constant for the max vertical speed
+        const double MAX_HORIZ_SPEED = 3.2; // Constant for the max horizontal speed
+        const double MAX_VERT_SPEED = 0.7;// Constant for the max vertical speed
 
         Vector2* pPosition = &GetPosition(); // Gets the position of the middle of the ship
         if (pPosition->X - GetHalfDimensions().X < LEFT) // Ensures the boss doesn't go past the left edge of the screen
