@@ -25,6 +25,12 @@ void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 	m_pLevel->LoadContent(pResourceManager);
 }
 
+/*void OnHighScoreSelect(MenuScreen* pScreen)
+{
+	//
+	pScreen->GetScreenManager()->AddScreen(new GameplayScreen());
+}*/
+
 void GameplayScreen::HandleInput(const InputState *pInput)
 {
 	m_pLevel->HandleInput(pInput);
@@ -43,3 +49,5 @@ void GameplayScreen::Draw(SpriteBatch *pSpriteBatch)
 
 	pSpriteBatch->End();
 }
+
+

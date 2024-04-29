@@ -248,6 +248,9 @@ namespace KatanaEngine
 		}
 	}
 
+
+
+
 	void Game::SetTargetFramesPerSecond(int const frames)
 	{
 		m_targetFramesPerSecond = frames;

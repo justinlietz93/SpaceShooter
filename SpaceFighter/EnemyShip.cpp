@@ -9,6 +9,7 @@ EnemyShip::EnemyShip()
     SetCollisionRadius(20);
 }
 
+
 // Update method for EnemyShip
 void EnemyShip::Update(const GameTime* pGameTime)
 {

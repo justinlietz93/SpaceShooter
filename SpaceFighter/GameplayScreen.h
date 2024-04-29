@@ -25,9 +25,12 @@ public:
 	virtual void Draw(SpriteBatch *pSpriteBatch);
 
 
+
 private:
 
 	Level *m_pLevel;
+
+
 
 
 };

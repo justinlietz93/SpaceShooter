@@ -94,6 +94,9 @@
     <ClCompile Include="BioEnemyBoss.cpp">
       <Filter>Source Files\Game Objects\Ships</Filter>
     </ClCompile>
+    <ClCompile Include="HighscoreScreen.cpp">
+      <Filter>Source Files\Screens</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainMenuScreen.h">
@@ -150,5 +153,13 @@
     <ClInclude Include="BioEnemyBoss.h">
       <Filter>Source Files\Game Objects\Ships</Filter>
     </ClInclude>
+    <ClInclude Include="HighscoreScreen.h">
+      <Filter>Source Files\Screens</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="highscore.txt">
+      <Filter>Source Files\Screens</Filter>
+    </Text>
   </ItemGroup>
 </Project>

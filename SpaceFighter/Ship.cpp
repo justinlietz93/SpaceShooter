@@ -1,5 +1,14 @@
 #include "Ship.h"
 
+
+int score = 0;
+
+void IncreaseScore() {
+    score += 1;
+    std::cout << score << "\n";
+
+};
+
 // Constructor for Ship class
 Ship::Ship()
 {
@@ -46,6 +55,7 @@ void Ship::Hit(const float damage)
         if (m_hitPoints <= 0)
         {
             GameObject::Deactivate();
+            IncreaseScore();
         }
     }
 }

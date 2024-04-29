@@ -177,6 +177,7 @@
     <ClCompile Include="EnemyShip.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameplayScreen.cpp" />
+    <ClCompile Include="HighscoreScreen.cpp" />
     <ClCompile Include="Level.cpp" />
     <ClCompile Include="Level01.cpp" />
     <ClCompile Include="Level02.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="EnemyShip.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameplayScreen.h" />
+    <ClInclude Include="HighscoreScreen.h" />
     <ClInclude Include="Level.h" />
     <ClInclude Include="Level01.h" />
     <ClInclude Include="Level02.h" />
@@ -212,6 +214,9 @@
     <ClInclude Include="SpaceFighter.h" />
     <ClInclude Include="TriggerType.h" />
     <ClInclude Include="Weapon.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="highscore.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

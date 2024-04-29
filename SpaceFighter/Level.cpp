@@ -10,8 +10,10 @@ void PlayerShootsEnemy(GameObject *pObject1, GameObject *pObject2)
 	bool m = pObject1->HasMask(CollisionType::ENEMY);
 	EnemyShip *pEnemyShip = (EnemyShip *)((m) ? pObject1 : pObject2);
 	Projectile *pPlayerProjectile = (Projectile *)((!m) ? pObject1 : pObject2);
+
 	pEnemyShip->Hit(pPlayerProjectile->GetDamage());
 	pPlayerProjectile->Deactivate();
+
 }
 
 void PlayerCollidesWithEnemy(GameObject *pObject1, GameObject *pObject2)
@@ -19,6 +21,8 @@ void PlayerCollidesWithEnemy(GameObject *pObject1, GameObject *pObject2)
 	bool m = pObject1->HasMask(CollisionType::PLAYER);
 	PlayerShip *pPlayerShip = (PlayerShip *)((m) ? pObject1 : pObject2);
 	EnemyShip *pEnemyShip = (EnemyShip *)((!m) ? pObject1 : pObject2);
+
+
 	pPlayerShip->Hit(std::numeric_limits<float>::max());
 	pEnemyShip->Hit(std::numeric_limits<float>::max());
 }

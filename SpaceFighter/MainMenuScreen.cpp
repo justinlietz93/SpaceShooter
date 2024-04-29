@@ -2,11 +2,18 @@
 #include <string>
 #include "MainMenuScreen.h"
 #include "GameplayScreen.h"
+#include "HighscoreScreen.h"
 
 // Callback Functions
 void OnStartGameSelect(MenuScreen *pScreen)
 {
 	pScreen->GetScreenManager()->AddScreen(new GameplayScreen());
+}
+
+void OnHighScoreSelect(MenuScreen* pScreen)
+{
+
+	pScreen->GetScreenManager()->AddScreen(new HighscoreScreen());
 }
 
 void OnQuitSelect(MenuScreen *pScreen)
@@ -15,6 +22,8 @@ void OnQuitSelect(MenuScreen *pScreen)
 	pMainMenuScreen->SetQuitFlag();
 	pMainMenuScreen->Exit();
 }
+
+
 
 void OnScreenRemove(Screen *pScreen)
 {
@@ -43,15 +52,15 @@ void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
 	m_texturePosition = Game::GetScreenCenter() - Vector2::UNIT_Y * 150;
 
 	// Create the menu items
-	const int COUNT = 2;
+	const int COUNT = 3;
 	MenuItem *pItem;
 	Font::SetLoadSize(20, true);
 	Font *pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
 
 	SetDisplayCount(COUNT);
 
-	enum Items { START_GAME, QUIT };
-	std::string text[COUNT] = { "Start Game", "Quit" };
+	enum Items { START_GAME, HIGH_SCORES, QUIT };
+	std::string text[COUNT] = { "Start Game", "Highscores", "Quit" };
 
 	for (int i = 0; i < COUNT; i++)
 	{
@@ -64,6 +73,7 @@ void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
 	}
 
 	GetMenuItem(START_GAME)->SetSelectCallback(OnStartGameSelect);
+	GetMenuItem(HIGH_SCORES)->SetSelectCallback(OnHighScoreSelect);
 	GetMenuItem(QUIT)->SetSelectCallback(OnQuitSelect);
 }
 
