@@ -1,13 +1,39 @@
 #include "Ship.h"
+#include "GameplayScreen.h"
+#include "Level.h"
+#include "Level01.h"
+#include "Level02.h"
 
 
-int score = 0;
+extern int score = 0;
 
 void IncreaseScore() {
     score += 1;
     std::cout << score << "\n";
 
-};
+}; 
+
+int GetScore() {
+    return score; 
+}
+
+/*
+void Ship::Update(const GameTime* pGameTime) {
+ 
+    score += 1;
+    
+}
+
+void Ship::Draw(SpriteBatch* pSpriteBatch) {
+    pSpriteBatch->Begin();
+    pSpriteBatch->Draw(m_pTexture, m_texturePosition, Color::White);
+
+    // Draw the score text
+    std::string scoreText = "Score: " + score;
+   
+
+    pSpriteBatch->End();
+}*/
 
 // Constructor for Ship class
 Ship::Ship()
@@ -59,6 +85,10 @@ void Ship::Hit(const float damage)
         }
     }
 }
+
+
+
+
 
 // Initialize method for Ship class
 void Ship::Initialize()
