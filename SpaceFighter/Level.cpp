@@ -228,3 +228,4 @@ void Level::Draw(SpriteBatch *pSpriteBatch)
 
 	pSpriteBatch->End();
 }
+

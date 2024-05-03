@@ -1,13 +1,21 @@
 #include "Ship.h"
+#include "GameplayScreen.h"
+#include "Level.h"
+#include "Level01.h"
+#include "Level02.h"
 
 
-int score = 0;
+extern int score = 0;
 
 void IncreaseScore() {
     score += 1;
     std::cout << score << "\n";
 
-};
+}; 
+
+int GetScore() {
+    return score; 
+}
 
 // Constructor for Ship class
 Ship::Ship()
@@ -59,6 +67,10 @@ void Ship::Hit(const float damage)
         }
     }
 }
+
+
+
+
 
 // Initialize method for Ship class
 void Ship::Initialize()
