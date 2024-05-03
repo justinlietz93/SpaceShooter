@@ -3,8 +3,6 @@
 #include "Level.h"
 #include "Level01.h"
 #include "Level02.h"
-#include "Ship.h"
-
 
 GameplayScreen::GameplayScreen(const int levelIndex)
 {
@@ -15,7 +13,6 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 	case 1: m_pLevel = new Level02(); break;
 	}
 
-	int score = GetScore(); 
 
 	SetTransitionInTime(1.0f);
 	SetTransitionOutTime(0.5f);
@@ -25,33 +22,8 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 
 void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 {
-	Font::SetLoadSize(20, true);
-	Font* pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
-
 	m_pLevel->LoadContent(pResourceManager);
-
-	std::string text = "Score: " + score;
 }
-
-
-void GameplayScreen::Update(const GameTime* pGameTime)
-{
-	MenuItem* pItem;
-
-	// Set the menu item colors
-	/*for (int i = 0; i < GetDisplayCount(); i++)*/
-	//{
-		pItem = GetMenuItem(i);
-		pItem->SetAlpha(GetAlpha());
-
-		if (pItem->IsSelected()) pItem->SetColor(Color::Yellow);
-		else pItem->SetColor(Color::Gray);
-	//}
-
-	MenuScreen::Update(pGameTime);
-}
-
-
 
 /*void OnHighScoreSelect(MenuScreen* pScreen)
 {

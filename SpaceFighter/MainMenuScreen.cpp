@@ -13,7 +13,7 @@ void OnStartGameSelect(MenuScreen *pScreen)
 void OnHighScoreSelect(MenuScreen* pScreen)
 {
 
-	pScreen->GetScreenManager()->AddScreen(new GameplayScreen());
+	pScreen->GetScreenManager()->AddScreen(new HighscoreScreen());
 }
 
 void OnQuitSelect(MenuScreen *pScreen)
