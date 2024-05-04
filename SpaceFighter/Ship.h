@@ -23,6 +23,8 @@ public:
 
 	virtual std::string ToString() const { return "Ship"; }
 
+	virtual int GetScore() { return score; }
+
 	virtual CollisionType GetCollisionType() const = 0; // Pure Virtual 
 
 	virtual void AttachWeapon(Weapon *pWeapon, Vector2 position);
@@ -58,5 +60,7 @@ private:
 
 	std::vector<Weapon *> m_weapons;
 	std::vector<Weapon *>::iterator m_weaponIt;
+
+	int score;
 };
 
