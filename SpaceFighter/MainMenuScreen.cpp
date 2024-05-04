@@ -5,7 +5,7 @@
 #include "HighscoreScreen.h"
 
 // Callback Functions
-void OnStartGameSelect(MenuScreen *pScreen)
+void OnStartGameSelect(MenuScreen* pScreen)
 {
 	pScreen->GetScreenManager()->AddScreen(new GameplayScreen());
 }
@@ -16,18 +16,18 @@ void OnHighScoreSelect(MenuScreen* pScreen)
 	pScreen->GetScreenManager()->AddScreen(new GameplayScreen());
 }
 
-void OnQuitSelect(MenuScreen *pScreen)
+void OnQuitSelect(MenuScreen* pScreen)
 {
-	MainMenuScreen *pMainMenuScreen = (MainMenuScreen *)pScreen;
+	MainMenuScreen* pMainMenuScreen = (MainMenuScreen*)pScreen;
 	pMainMenuScreen->SetQuitFlag();
 	pMainMenuScreen->Exit();
 }
 
 
 
-void OnScreenRemove(Screen *pScreen)
+void OnScreenRemove(Screen* pScreen)
 {
-	MainMenuScreen *pMainMenuScreen = (MainMenuScreen *)pScreen;
+	MainMenuScreen* pMainMenuScreen = (MainMenuScreen*)pScreen;
 	if (pMainMenuScreen->IsQuittingGame()) pScreen->GetGame()->Quit();
 }
 
@@ -45,7 +45,7 @@ MainMenuScreen::MainMenuScreen()
 	Show(); // Show the screen
 }
 
-void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
+void MainMenuScreen::LoadContent(ResourceManager* pResourceManager)
 {
 	// Logo
 	m_pTexture = pResourceManager->Load<Texture>("Textures\\Logo.png");
@@ -53,9 +53,9 @@ void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
 
 	// Create the menu items
 	const int COUNT = 3;
-	MenuItem *pItem;
+	MenuItem* pItem;
 	Font::SetLoadSize(20, true);
-	Font *pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
+	Font* pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
 
 	SetDisplayCount(COUNT);
 
@@ -77,9 +77,9 @@ void MainMenuScreen::LoadContent(ResourceManager *pResourceManager)
 	GetMenuItem(QUIT)->SetSelectCallback(OnQuitSelect);
 }
 
-void MainMenuScreen::Update(const GameTime *pGameTime)
+void MainMenuScreen::Update(const GameTime* pGameTime)
 {
-	MenuItem *pItem;
+	MenuItem* pItem;
 
 	// Set the menu item colors
 	for (int i = 0; i < GetDisplayCount(); i++)
@@ -94,7 +94,7 @@ void MainMenuScreen::Update(const GameTime *pGameTime)
 	MenuScreen::Update(pGameTime);
 }
 
-void MainMenuScreen::Draw(SpriteBatch *pSpriteBatch)
+void MainMenuScreen::Draw(SpriteBatch* pSpriteBatch)
 {
 	pSpriteBatch->Begin();
 	pSpriteBatch->Draw(m_pTexture, m_texturePosition, Color::White * GetAlpha(), m_pTexture->GetCenter());
