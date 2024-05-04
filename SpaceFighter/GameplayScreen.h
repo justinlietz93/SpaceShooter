@@ -29,10 +29,16 @@ public:
 
 private:
 
-	Level *m_pLevel;
+	Level* m_pLevel;
 
 	int score;
 
+	Font* font;
 
+	std::string text;
+
+	Vector2 textPosition;
+
+	Color textColor;
 
 };

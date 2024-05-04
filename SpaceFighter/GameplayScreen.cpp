@@ -2,8 +2,6 @@
 #include "GameplayScreen.h"
 #include "Level.h"
 #include "Level01.h"
-#include "Level02.h"
-#include "Ship.h"
 
 
 GameplayScreen::GameplayScreen(const int levelIndex)
@@ -12,7 +10,6 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 	switch (levelIndex)
 	{
 	case 0: m_pLevel = new Level01(); break;
-	case 1: m_pLevel = new Level02(); break;
 	}
 
 	int score = GetScore(); 
@@ -25,12 +22,11 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 
 void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 {
-	Font::SetLoadSize(20, true);
-	Font* pFont = pResourceManager->Load<Font>("Fonts\\ariali.ttf");
-
 	m_pLevel->LoadContent(pResourceManager);
-
-	std::string text = "Score: " + score;
+	Font::SetLoadSize(20, true);
+	font = pResourceManager->Load<Font>("Fonts/ariali.ttf");
+	textPosition = Vector2(100, 100);
+	textColor = Color::White;
 }
 
 
@@ -71,11 +67,17 @@ void GameplayScreen::Update(const GameTime *pGameTime)
 
 void GameplayScreen::Draw(SpriteBatch *pSpriteBatch)
 {
-	pSpriteBatch->Begin();
+	if (pSpriteBatch && font) {
+		pSpriteBatch->Begin();
 
-	m_pLevel->Draw(pSpriteBatch);
+		if (m_pLevel) {
+			m_pLevel->Draw(pSpriteBatch);
+		}
 
-	pSpriteBatch->End();
+		//pSpriteBatch->DrawString(font, &text, textPosition, textColor, TextAlign::LEFT, 0.0f);
+
+		pSpriteBatch->End();
+	}
 }
 
 
