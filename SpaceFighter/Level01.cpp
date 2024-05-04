@@ -22,7 +22,7 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 		0.5, 0.4, 0.6, 0.45, 0.55
 	};
 
-	double xBossPosition = 0.1; // Sets the boss' x position
+	double xBossPosition = 0.5;
 	
 	double delays[COUNT] =
 	{
@@ -50,14 +50,13 @@ void Level01::LoadContent(ResourceManager *pResourceManager)
 		AddGameObject(pEnemy);
 	}
 
-	// Sets the starting position of the boss
-	bossPosition.Set(xBossPosition * Game::GetScreenWidth(), -pTexture->GetCenter().Y); 
+	bossPosition.Set(xBossPosition * Game::GetScreenWidth(), -pTexture->GetCenter().Y);
 
-	BioEnemyBoss* pBioBoss = new BioEnemyBoss(); // Creates a new boss object
-	pBioBoss->SetTexture(pBossTexture); // Assigns its texture
-	pBioBoss->SetCurrentLevel(this); // Sets the level
-	pBioBoss->Initialize(bossPosition, (float)delay + 1.3); // Initializes the boss' position
-	AddGameObject(pBioBoss); // Adds the boss object to the level
+	BioEnemyBoss* pBioBoss = new BioEnemyBoss();
+	pBioBoss->SetTexture(pBossTexture);
+	pBioBoss->SetCurrentLevel(this);
+	pBioBoss->Initialize(bossPosition, (float)delay + 1.3);
+	AddGameObject(pBioBoss);
 
 
 
