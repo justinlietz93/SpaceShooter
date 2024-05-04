@@ -124,7 +124,16 @@ namespace KatanaEngine
 	void SpriteBatch::DrawString(const Font *pFont, std::string *text, const Vector2 position,
 		const Color color, const TextAlign alignment, const float drawDepth)
 	{
-		assert(m_isStarted && "Begin must be called before a Draw function can be run!");
+		if (!pFont) {
+			std::cerr << "Error: Font is null.\n";
+			return;
+		}
+		if (!text || text->empty()) {
+			std::cerr << "Error: Text is null or empty.\n";
+			return;
+		}
+
+		//assert(m_isStarted && "Begin must be called before a Draw function can be run!");
 
 		Drawable *pDrawable;
 

@@ -12,8 +12,6 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 	case 0: m_pLevel = new Level01(); break;
 	}
 
-	int score = GetScore(); 
-
 	SetTransitionInTime(1.0f);
 	SetTransitionOutTime(0.5f);
 
@@ -23,10 +21,15 @@ GameplayScreen::GameplayScreen(const int levelIndex)
 void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 {
 	m_pLevel->LoadContent(pResourceManager);
-	Font::SetLoadSize(20, true);
+	Font::SetLoadSize(40, true);
 	font = pResourceManager->Load<Font>("Fonts/ariali.ttf");
-	textPosition = Vector2(100, 100);
+	if (!font) {
+		std::cerr << "Failed to load font.\n";
+	}
+	score = 0;
+	textPosition = Vector2(50, 850);
 	textColor = Color::White;
+	text = "Score: " + std::to_string(score);
 }
 
 
@@ -68,16 +71,24 @@ void GameplayScreen::Update(const GameTime *pGameTime)
 void GameplayScreen::Draw(SpriteBatch *pSpriteBatch)
 {
 	if (pSpriteBatch && font) {
+		if (!font || text.empty()) {
+			std::cerr << "Font is not loaded or text is empty, cannot draw text.\n";
+			return;
+		}
+
 		pSpriteBatch->Begin();
 
 		if (m_pLevel) {
 			m_pLevel->Draw(pSpriteBatch);
 		}
 
-		//pSpriteBatch->DrawString(font, &text, textPosition, textColor, TextAlign::LEFT, 0.0f);
+		pSpriteBatch->DrawString(font, &text, textPosition, textColor, TextAlign::LEFT, 0.0f);
 
 		pSpriteBatch->End();
 	}
+
+		//void SpriteBatch::DrawString(const Font * pFont, std::string * text, const Vector2 position,
+		//	const Color color, const TextAlign alignment, const float drawDepth)
 }
 
 
