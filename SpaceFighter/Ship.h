@@ -5,8 +5,11 @@
 #include "Weapon.h"
 
 
+extern int score;
+
 class Ship : public GameObject
 {
+
 public:
 	Ship();
 	virtual ~Ship() { }
@@ -49,7 +52,6 @@ protected:
 	virtual float GetMaxHitPoints() const { return m_maxHitPoints; }
 
 
-
 private:
 
 	float m_speed;
@@ -64,6 +66,6 @@ private:
 	std::vector<Weapon *> m_weapons;
 	std::vector<Weapon *>::iterator m_weaponIt;
 
-	int score;
+	
 };
 

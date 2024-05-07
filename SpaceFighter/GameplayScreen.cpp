@@ -2,6 +2,7 @@
 #include "GameplayScreen.h"
 #include "Level.h"
 #include "Level01.h"
+#include "Ship.h"
 
 
 GameplayScreen::GameplayScreen(const int levelIndex)
@@ -27,7 +28,7 @@ void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 		std::cerr << "Failed to load font.\n";
 	}
 	//while 
-	int scoreDisplay = GetScore(score);
+	int scoreDisplay = score;
 	textPosition = Vector2(50, 850);
 	textColor = Color::White;
 

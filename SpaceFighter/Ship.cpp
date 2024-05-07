@@ -4,8 +4,9 @@
 #include "Level01.h"
 #include "Level02.h"
 
-
-extern int score = 0;
+//set to 2 so I know we're passing the right variable.
+//change back to zero once score counter works.
+int score = 2;
 
 void IncreaseScore() {
     score += 1;
@@ -16,6 +17,8 @@ void IncreaseScore() {
 int GetScore(int score) {
     return score; 
 }
+
+
 
 // Constructor for Ship class
 Ship::Ship()

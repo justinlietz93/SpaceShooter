@@ -24,14 +24,14 @@ public:
 
 	virtual void Draw(SpriteBatch *pSpriteBatch);
 
-	virtual int GetScore(int score) { return score; }
+	//virtual int GetScore();
 
 
 private:
 
 	Level* m_pLevel;
 
-	int score;
+	//extern int score;
 
 	Font* font;
 
