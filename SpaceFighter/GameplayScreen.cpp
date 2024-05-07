@@ -26,30 +26,13 @@ void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 	if (!font) {
 		std::cerr << "Failed to load font.\n";
 	}
-	score = 0;
+	//while 
+	int scoreDisplay = GetScore(score);
 	textPosition = Vector2(50, 850);
 	textColor = Color::White;
-	text = "Score: " + std::to_string(score);
+
+	text = "Score: " + std::to_string(scoreDisplay);
 }
-
-
-//void GameplayScreen::Update(const GameTime* pGameTime)
-//{
-//	MenuItem* pItem;
-//
-//	// Set the menu item colors
-//	/*for (int i = 0; i < GetDisplayCount(); i++)*/
-//	//{
-//		pItem = GetMenuItem(i);
-//		pItem->SetAlpha(GetAlpha());
-//
-//		if (pItem->IsSelected()) pItem->SetColor(Color::Yellow);
-//		else pItem->SetColor(Color::Gray);
-//	//}
-//
-//	MenuScreen::Update(pGameTime);
-//}
-
 
 
 /*void OnHighScoreSelect(MenuScreen* pScreen)

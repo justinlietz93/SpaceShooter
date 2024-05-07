@@ -24,7 +24,7 @@ public:
 
 	virtual void Draw(SpriteBatch *pSpriteBatch);
 
-	virtual int GetScore() { return score; }
+	virtual int GetScore(int score) { return score; }
 
 
 private:

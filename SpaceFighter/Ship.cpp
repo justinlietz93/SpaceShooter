@@ -13,7 +13,7 @@ void IncreaseScore() {
 
 }; 
 
-int GetScore() {
+int GetScore(int score) {
     return score; 
 }
 
@@ -63,7 +63,7 @@ void Ship::Hit(const float damage)
         if (m_hitPoints <= 0)
         {
             GameObject::Deactivate();
-            IncreaseScore();
+            IncreaseScore( );
         }
     }
 }

@@ -49,6 +49,7 @@ protected:
 	virtual float GetMaxHitPoints() const { return m_maxHitPoints; }
 
 
+
 private:
 
 	float m_speed;
@@ -57,6 +58,8 @@ private:
 	float m_maxHitPoints;
 
 	bool m_isInvulnurable;
+	bool m_End;
+
 
 	std::vector<Weapon *> m_weapons;
 	std::vector<Weapon *>::iterator m_weaponIt;
