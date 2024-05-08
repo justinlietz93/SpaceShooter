@@ -5,6 +5,10 @@
 
 using namespace KatanaEngine;
 
+// Global score variables
+extern int score;
+extern int highScore;
+
 class Level;
 
 class GameplayScreen : public Screen
@@ -24,14 +28,12 @@ public:
 
 	virtual void Draw(SpriteBatch *pSpriteBatch);
 
-	virtual int GetScore() { return score; }
+	//virtual int GetScore();
 
 
 private:
 
 	Level* m_pLevel;
-
-	int score;
 
 	Font* font;
 

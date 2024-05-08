@@ -2,6 +2,7 @@
 #include "GameplayScreen.h"
 #include "Level.h"
 #include "Level01.h"
+#include "Ship.h"
 
 
 GameplayScreen::GameplayScreen(const int levelIndex)
@@ -26,30 +27,23 @@ void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 	if (!font) {
 		std::cerr << "Failed to load font.\n";
 	}
-	score = 0;
+
 	textPosition = Vector2(50, 850);
 	textColor = Color::White;
-	text = "Score: " + std::to_string(score);
+
+
+	// Initialize high score from a file
+	std::ifstream file("highscore.txt");
+	if (file.is_open()) {
+		file >> highScore;
+		file.close();
+	}
+	else {
+		// If file does not exist, start with high score of 0
+		highScore = 0;
+	}
+	
 }
-
-
-//void GameplayScreen::Update(const GameTime* pGameTime)
-//{
-//	MenuItem* pItem;
-//
-//	// Set the menu item colors
-//	/*for (int i = 0; i < GetDisplayCount(); i++)*/
-//	//{
-//		pItem = GetMenuItem(i);
-//		pItem->SetAlpha(GetAlpha());
-//
-//		if (pItem->IsSelected()) pItem->SetColor(Color::Yellow);
-//		else pItem->SetColor(Color::Gray);
-//	//}
-//
-//	MenuScreen::Update(pGameTime);
-//}
-
 
 
 /*void OnHighScoreSelect(MenuScreen* pScreen)
@@ -66,6 +60,8 @@ void GameplayScreen::HandleInput(const InputState *pInput)
 void GameplayScreen::Update(const GameTime *pGameTime)
 {
 	m_pLevel->Update(pGameTime);
+	int scoreDisplay = score;
+	text = "Score: " + std::to_string(scoreDisplay) + "  High Score: " + std::to_string(highScore);;
 }
 
 void GameplayScreen::Draw(SpriteBatch *pSpriteBatch)

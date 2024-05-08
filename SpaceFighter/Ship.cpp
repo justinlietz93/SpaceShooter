@@ -4,18 +4,30 @@
 #include "Level01.h"
 #include "Level02.h"
 
-
-extern int score = 0;
+// Initialize score variables
+int score = 0;
+int highScore = 0;
 
 void IncreaseScore() {
     score += 1;
-    std::cout << score << "\n";
+    //std::cout << score << "\n";
 
+    if (score > highScore) {
+        highScore = score;
+        // Update the high score in the file, overwrite old highscore
+        std::ofstream file("highscore.txt", std::ios::trunc);
+        if (file.is_open()) {
+            file << highScore;
+            file.close();
+        }
+    }
 }; 
 
-int GetScore() {
+int GetScore(int score) {
     return score; 
 }
+
+
 
 // Constructor for Ship class
 Ship::Ship()
@@ -63,7 +75,7 @@ void Ship::Hit(const float damage)
         if (m_hitPoints <= 0)
         {
             GameObject::Deactivate();
-            IncreaseScore();
+            IncreaseScore( );
         }
     }
 }
