@@ -4,14 +4,23 @@
 #include "Level01.h"
 #include "Level02.h"
 
-//set to 2 so I know we're passing the right variable.
-//change back to zero once score counter works.
-int score = 2;
+// Initialize score variables
+int score = 0;
+int highScore = 0;
 
 void IncreaseScore() {
     score += 1;
-    std::cout << score << "\n";
+    //std::cout << score << "\n";
 
+    if (score > highScore) {
+        highScore = score;
+        // Update the high score in the file, overwrite old highscore
+        std::ofstream file("highscore.txt", std::ios::trunc);
+        if (file.is_open()) {
+            file << highScore;
+            file.close();
+        }
+    }
 }; 
 
 int GetScore(int score) {

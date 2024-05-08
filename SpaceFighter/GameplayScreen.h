@@ -5,6 +5,10 @@
 
 using namespace KatanaEngine;
 
+// Global score variables
+extern int score;
+extern int highScore;
+
 class Level;
 
 class GameplayScreen : public Screen
@@ -30,8 +34,6 @@ public:
 private:
 
 	Level* m_pLevel;
-
-	//extern int score;
 
 	Font* font;
 

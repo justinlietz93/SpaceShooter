@@ -27,12 +27,22 @@ void GameplayScreen::LoadContent(ResourceManager *pResourceManager)
 	if (!font) {
 		std::cerr << "Failed to load font.\n";
 	}
-	//while 
-	int scoreDisplay = score;
+
 	textPosition = Vector2(50, 850);
 	textColor = Color::White;
 
-	text = "Score: " + std::to_string(scoreDisplay);
+
+	// Initialize high score from a file
+	std::ifstream file("highscore.txt");
+	if (file.is_open()) {
+		file >> highScore;
+		file.close();
+	}
+	else {
+		// If file does not exist, start with high score of 0
+		highScore = 0;
+	}
+	
 }
 
 
@@ -50,6 +60,8 @@ void GameplayScreen::HandleInput(const InputState *pInput)
 void GameplayScreen::Update(const GameTime *pGameTime)
 {
 	m_pLevel->Update(pGameTime);
+	int scoreDisplay = score;
+	text = "Score: " + std::to_string(scoreDisplay) + "  High Score: " + std::to_string(highScore);;
 }
 
 void GameplayScreen::Draw(SpriteBatch *pSpriteBatch)
